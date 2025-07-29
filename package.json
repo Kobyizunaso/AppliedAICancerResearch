@@ -1,0 +1,60 @@
+{
+  "name": "cancer-analysis-platform",
+  "version": "1.0.0",
+  "description": "Web-based cancer data analysis platform with ML and visualization",
+  "private": true,
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.8.1",
+    "react-scripts": "5.0.1",
+    "axios": "^1.4.0",
+    "plotly.js": "^2.26.0",
+    "react-plotly.js": "^2.6.0",
+    "d3": "^7.8.5",
+    "@mui/material": "^5.14.5",
+    "@mui/icons-material": "^5.14.3",
+    "@mui/lab": "^5.0.0-alpha.140",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "recharts": "^2.8.0",
+    "react-dropzone": "^14.2.3",
+    "react-hot-toast": "^2.4.1",
+    "react-table": "^7.8.0",
+    "styled-components": "^6.0.7",
+    "framer-motion": "^10.16.1",
+    "react-query": "^3.39.3",
+    "date-fns": "^2.30.0",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@types/d3": "^7.4.0",
+    "@types/lodash": "^4.14.195",
+    "typescript": "^4.9.5",
+    "eslint": "^8.45.0",
+    "prettier": "^3.0.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
+    "format": "prettier --write src/**/*.{js,jsx,ts,tsx,css,md}"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "proxy": "http://localhost:5000"
+}
