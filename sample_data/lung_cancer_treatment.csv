@@ -1,0 +1,41 @@
+patient_id,age,stage,histology,smoking_status,treatment,response,progression_free_survival_months,overall_survival_months,performance_status
+LC001,65,IIIA,Adenocarcinoma,Former,Surgery + Chemotherapy,Partial Response,12,28,1
+LC002,58,IV,Squamous Cell,Current,Chemotherapy + Immunotherapy,Stable Disease,8,18,2
+LC003,72,IIIB,Adenocarcinoma,Former,Radiation + Chemotherapy,Complete Response,18,45,1
+LC004,61,IV,Small Cell,Current,Chemotherapy,Progressive Disease,4,9,3
+LC005,69,IIA,Adenocarcinoma,Never,Surgery,Complete Response,24,60,0
+LC006,54,IV,Adenocarcinoma,Former,Targeted Therapy,Partial Response,14,32,1
+LC007,77,IIIA,Squamous Cell,Former,Radiation + Chemotherapy,Stable Disease,10,22,2
+LC008,63,IV,Adenocarcinoma,Current,Chemotherapy + Immunotherapy,Partial Response,11,26,1
+LC009,59,IIIB,Small Cell,Current,Chemotherapy + Radiation,Progressive Disease,6,14,3
+LC010,66,IB,Adenocarcinoma,Former,Surgery,Complete Response,36,72,0
+LC011,71,IV,Squamous Cell,Current,Chemotherapy,Stable Disease,7,16,2
+LC012,55,IIIA,Adenocarcinoma,Never,Surgery + Chemotherapy,Partial Response,15,38,1
+LC013,68,IV,Adenocarcinoma,Former,Targeted Therapy + Immunotherapy,Partial Response,16,34,1
+LC014,74,IIIB,Squamous Cell,Former,Radiation + Chemotherapy,Stable Disease,9,20,2
+LC015,62,IV,Small Cell,Current,Chemotherapy,Progressive Disease,5,11,3
+LC016,57,IIA,Adenocarcinoma,Never,Surgery,Complete Response,30,65,0
+LC017,70,IV,Adenocarcinoma,Former,Targeted Therapy,Stable Disease,12,28,1
+LC018,64,IIIA,Squamous Cell,Current,Surgery + Chemotherapy,Partial Response,13,30,1
+LC019,75,IV,Adenocarcinoma,Former,Immunotherapy,Stable Disease,8,19,2
+LC020,60,IIIB,Small Cell,Current,Chemotherapy + Radiation,Progressive Disease,7,15,3
+LC021,56,IB,Adenocarcinoma,Never,Surgery,Complete Response,42,78,0
+LC022,67,IV,Squamous Cell,Current,Chemotherapy + Immunotherapy,Partial Response,10,24,2
+LC023,73,IIIA,Adenocarcinoma,Former,Radiation + Chemotherapy,Stable Disease,11,25,2
+LC024,61,IV,Adenocarcinoma,Former,Targeted Therapy,Partial Response,17,36,1
+LC025,69,IIIB,Squamous Cell,Current,Radiation + Chemotherapy,Progressive Disease,6,13,3
+LC026,58,IIA,Adenocarcinoma,Never,Surgery,Complete Response,28,62,0
+LC027,76,IV,Small Cell,Current,Chemotherapy,Progressive Disease,4,8,3
+LC028,63,IIIA,Adenocarcinoma,Former,Surgery + Chemotherapy,Partial Response,14,32,1
+LC029,65,IV,Adenocarcinoma,Former,Targeted Therapy + Immunotherapy,Stable Disease,13,29,1
+LC030,71,IIIB,Squamous Cell,Current,Radiation + Chemotherapy,Stable Disease,8,18,2
+LC031,59,IV,Adenocarcinoma,Former,Immunotherapy,Partial Response,12,27,1
+LC032,66,IIA,Adenocarcinoma,Never,Surgery,Complete Response,35,70,0
+LC033,74,IV,Small Cell,Current,Chemotherapy,Progressive Disease,5,10,3
+LC034,62,IIIA,Squamous Cell,Former,Surgery + Chemotherapy,Partial Response,16,35,1
+LC035,68,IV,Adenocarcinoma,Current,Chemotherapy + Immunotherapy,Stable Disease,9,21,2
+LC036,55,IIIB,Adenocarcinoma,Never,Radiation + Chemotherapy,Complete Response,20,48,1
+LC037,72,IV,Squamous Cell,Former,Chemotherapy,Progressive Disease,6,14,3
+LC038,64,IB,Adenocarcinoma,Never,Surgery,Complete Response,40,75,0
+LC039,70,IV,Adenocarcinoma,Former,Targeted Therapy,Partial Response,15,33,1
+LC040,67,IIIA,Small Cell,Current,Chemotherapy + Radiation,Stable Disease,8,17,2
