@@ -1,0 +1,41 @@
+patient_id,age,tumor_size_cm,grade,estrogen_receptor,progesterone_receptor,her2_status,treatment_type,survival_time_months,status,lymph_nodes_positive
+BC001,45,2.1,2,Positive,Positive,Negative,Surgery + Chemotherapy,48,1,0
+BC002,52,3.5,3,Negative,Negative,Positive,Surgery + Radiation + Targeted,36,0,2
+BC003,38,1.8,1,Positive,Positive,Negative,Surgery,60,1,0
+BC004,61,4.2,3,Negative,Negative,Negative,Surgery + Chemotherapy,24,0,5
+BC005,49,2.7,2,Positive,Negative,Negative,Surgery + Radiation,54,1,1
+BC006,33,1.5,1,Positive,Positive,Negative,Surgery,62,1,0
+BC007,58,3.8,3,Negative,Negative,Positive,Surgery + Chemotherapy + Targeted,30,0,3
+BC008,44,2.3,2,Positive,Positive,Negative,Surgery + Chemotherapy,50,1,1
+BC009,67,5.1,3,Negative,Negative,Negative,Surgery + Chemotherapy,18,0,7
+BC010,41,1.9,1,Positive,Positive,Negative,Surgery,58,1,0
+BC011,55,3.2,2,Positive,Negative,Positive,Surgery + Radiation + Targeted,42,1,2
+BC012,48,2.8,2,Positive,Positive,Negative,Surgery + Chemotherapy,46,1,1
+BC013,39,1.7,1,Positive,Positive,Negative,Surgery,60,1,0
+BC014,63,4.5,3,Negative,Negative,Negative,Surgery + Chemotherapy,22,0,6
+BC015,51,2.5,2,Positive,Negative,Negative,Surgery + Radiation,52,1,1
+BC016,46,2.9,2,Positive,Positive,Negative,Surgery + Chemotherapy,48,1,2
+BC017,37,1.6,1,Positive,Positive,Negative,Surgery,61,1,0
+BC018,59,3.7,3,Negative,Negative,Positive,Surgery + Chemotherapy + Targeted,32,0,4
+BC019,42,2.2,2,Positive,Positive,Negative,Surgery + Chemotherapy,49,1,1
+BC020,65,4.8,3,Negative,Negative,Negative,Surgery + Chemotherapy,20,0,8
+BC021,47,2.4,2,Positive,Negative,Negative,Surgery + Radiation,53,1,1
+BC022,54,3.1,2,Positive,Positive,Positive,Surgery + Radiation + Targeted,44,1,2
+BC023,40,1.8,1,Positive,Positive,Negative,Surgery,59,1,0
+BC024,62,4.3,3,Negative,Negative,Negative,Surgery + Chemotherapy,26,0,5
+BC025,50,2.6,2,Positive,Positive,Negative,Surgery + Chemotherapy,51,1,1
+BC026,35,1.4,1,Positive,Positive,Negative,Surgery,63,1,0
+BC027,57,3.6,3,Negative,Negative,Positive,Surgery + Chemotherapy + Targeted,34,0,3
+BC028,43,2.1,2,Positive,Positive,Negative,Surgery + Chemotherapy,47,1,1
+BC029,66,4.9,3,Negative,Negative,Negative,Surgery + Chemotherapy,19,0,7
+BC030,45,2.3,2,Positive,Negative,Negative,Surgery + Radiation,54,1,1
+BC031,53,3.3,2,Positive,Positive,Positive,Surgery + Radiation + Targeted,43,1,2
+BC032,41,1.9,1,Positive,Positive,Negative,Surgery,58,1,0
+BC033,60,4.1,3,Negative,Negative,Negative,Surgery + Chemotherapy,25,0,6
+BC034,49,2.7,2,Positive,Positive,Negative,Surgery + Chemotherapy,50,1,1
+BC035,36,1.5,1,Positive,Positive,Negative,Surgery,62,1,0
+BC036,56,3.4,3,Negative,Negative,Positive,Surgery + Chemotherapy + Targeted,33,0,4
+BC037,44,2.2,2,Positive,Positive,Negative,Surgery + Chemotherapy,48,1,1
+BC038,64,4.6,3,Negative,Negative,Negative,Surgery + Chemotherapy,21,0,7
+BC039,48,2.5,2,Positive,Negative,Negative,Surgery + Radiation,52,1,1
+BC040,52,3.0,2,Positive,Positive,Positive,Surgery + Radiation + Targeted,45,1,2

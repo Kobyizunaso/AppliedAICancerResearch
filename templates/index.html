@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancer Research Data Analytics Platform</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        :root {
+            --primary-blue: #1e3a8a;
+            --secondary-blue: #3b82f6;
+            --light-blue: #dbeafe;
+            --primary-yellow: #fbbf24;
+            --light-yellow: #fef3c7;
+            --dark-gray: #374151;
+            --light-gray: #f3f4f6;
+            --white: #ffffff;
+            --success-green: #10b981;
+            --error-red: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--light-blue) 0%, var(--light-yellow) 100%);
+            min-height: 100vh;
+            color: var(--dark-gray);
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            color: var(--white);
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .header .subtitle {
+            margin-top: 0.5rem;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 2rem;
+        }
+
+        .sidebar {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+            border-left: 4px solid var(--primary-yellow);
+        }
+
+        .main-content {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            min-height: 600px;
+        }
+
+        .section {
+            margin-bottom: 2rem;
+        }
+
+        .section h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--secondary-blue) 0%, var(--primary-blue) 100%);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0.25rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(30, 58, 138, 0.3);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--primary-yellow) 0%, #f59e0b 100%);
+            color: var(--dark-gray);
+        }
+
+        .btn-secondary:hover {
+            box-shadow: 0 6px 12px rgba(251, 191, 36, 0.3);
+        }
+
+        .file-upload {
+            border: 2px dashed var(--secondary-blue);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            background: var(--light-blue);
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+        }
+
+        .file-upload:hover {
+            border-color: var(--primary-blue);
+            background: rgba(219, 234, 254, 0.8);
+        }
+
+        .file-upload input[type="file"] {
+            display: none;
+        }
+
+        .dataset-info {
+            background: var(--light-gray);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-left: 4px solid var(--success-green);
+        }
+
+        .sample-datasets {
+            display: grid;
+            gap: 0.5rem;
+        }
+
+        .sample-dataset-item {
+            background: var(--light-yellow);
+            border-radius: 6px;
+            padding: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+
+        .sample-dataset-item:hover {
+            background: var(--primary-yellow);
+            transform: translateX(4px);
+        }
+
+        .sample-dataset-item h4 {
+            color: var(--primary-blue);
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .sample-dataset-item p {
+            font-size: 0.8rem;
+            color: var(--dark-gray);
+            opacity: 0.8;
+        }
+
+        .visualization-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .ml-controls {
+            background: var(--light-blue);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .ml-controls select,
+        .ml-controls input {
+            padding: 0.5rem;
+            border: 1px solid var(--secondary-blue);
+            border-radius: 4px;
+            margin: 0.25rem;
+            background: var(--white);
+        }
+
+        .plot-container {
+            background: var(--white);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            min-height: 400px;
+        }
+
+        .error-message {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--error-red);
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--error-red);
+            margin: 1rem 0;
+        }
+
+        .success-message {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success-green);
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--success-green);
+            margin: 1rem 0;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--white);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .tabs {
+            display: flex;
+            background: var(--light-gray);
+            border-radius: 8px;
+            padding: 0.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 0.75rem;
+            text-align: center;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .tab.active {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--light-blue) 0%, var(--light-yellow) 100%);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .stat-card .value {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+        }
+
+        .stat-card .label {
+            font-size: 0.8rem;
+            color: var(--dark-gray);
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .visualization-controls {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>
+            <i class="fas fa-microscope"></i>
+            Cancer Research Data Analytics Platform
+        </h1>
+        <p class="subtitle">Advanced tools for cancer dataset analysis, visualization, and machine learning</p>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="section">
+                <h3><i class="fas fa-database"></i> Data Management</h3>
+                
+                <div class="file-upload" onclick="document.getElementById('fileInput').click()">
+                    <i class="fas fa-cloud-upload-alt" style="font-size: 2rem; color: var(--secondary-blue); margin-bottom: 0.5rem;"></i>
+                    <p><strong>Upload Dataset</strong></p>
+                    <p style="font-size: 0.8rem; opacity: 0.7;">CSV or Excel files</p>
+                    <input type="file" id="fileInput" accept=".csv,.xlsx,.xls" onchange="uploadFile()">
+                </div>
+
+                <h4 style="color: var(--primary-blue); margin: 1rem 0 0.5rem 0;">Sample Datasets</h4>
+                <div class="sample-datasets" id="sampleDatasets">
+                    <!-- Sample datasets will be loaded here -->
+                </div>
+            </div>
+
+            <div class="section" id="datasetInfoSection" style="display: none;">
+                <h3><i class="fas fa-info-circle"></i> Dataset Info</h3>
+                <div id="datasetInfo" class="dataset-info">
+                    <!-- Dataset information will be displayed here -->
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="tabs">
+                <div class="tab active" onclick="switchTab('visualizations')">
+                    <i class="fas fa-chart-line"></i> Visualizations
+                </div>
+                <div class="tab" onclick="switchTab('machine-learning')">
+                    <i class="fas fa-brain"></i> Machine Learning
+                </div>
+                <div class="tab" onclick="switchTab('analysis')">
+                    <i class="fas fa-microscope"></i> Analysis
+                </div>
+            </div>
+
+            <div id="visualizations" class="tab-content active">
+                <h2 style="color: var(--primary-blue); margin-bottom: 1rem;">Data Visualizations</h2>
+                
+                <div class="visualization-controls">
+                    <button class="btn" onclick="generateCorrelationHeatmap()">
+                        <i class="fas fa-th"></i> Correlation Heatmap
+                    </button>
+                    <button class="btn" onclick="generateSurvivalCurve()">
+                        <i class="fas fa-chart-line"></i> Survival Curve
+                    </button>
+                    <button class="btn" onclick="generateOutcomeDistribution()">
+                        <i class="fas fa-chart-bar"></i> Outcome Distribution
+                    </button>
+                </div>
+
+                <div id="plotContainer" class="plot-container">
+                    <div style="text-align: center; padding: 2rem; color: var(--dark-gray); opacity: 0.6;">
+                        <i class="fas fa-chart-line" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                        <p>Select a visualization type above to get started</p>
+                        <p style="font-size: 0.8rem; margin-top: 0.5rem;">Load a dataset first to enable visualizations</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="machine-learning" class="tab-content">
+                <h2 style="color: var(--primary-blue); margin-bottom: 1rem;">Machine Learning Models</h2>
+                
+                <div class="ml-controls">
+                    <h4 style="margin-bottom: 0.5rem;">Model Configuration</h4>
+                    <div style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;">
+                        <div>
+                            <label>Model Type:</label>
+                            <select id="modelType">
+                                <option value="logistic_regression">Logistic Regression</option>
+                                <option value="decision_tree">Decision Tree</option>
+                                <option value="random_forest">Random Forest</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>Target Column:</label>
+                            <select id="targetColumn">
+                                <option value="">Select target...</option>
+                            </select>
+                        </div>
+                        <button class="btn" onclick="runMLModel()">
+                            <i class="fas fa-play"></i> Run Model
+                        </button>
+                    </div>
+                </div>
+
+                <div id="mlResults" class="plot-container">
+                    <div style="text-align: center; padding: 2rem; color: var(--dark-gray); opacity: 0.6;">
+                        <i class="fas fa-brain" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                        <p>Configure and run a machine learning model above</p>
+                        <p style="font-size: 0.8rem; margin-top: 0.5rem;">Results will be displayed here</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="analysis" class="tab-content">
+                <h2 style="color: var(--primary-blue); margin-bottom: 1rem;">Data Analysis & Summary</h2>
+                
+                <button class="btn" onclick="generateSummary()">
+                    <i class="fas fa-file-alt"></i> Generate Summary Report
+                </button>
+
+                <div id="summaryResults" class="plot-container">
+                    <div style="text-align: center; padding: 2rem; color: var(--dark-gray); opacity: 0.6;">
+                        <i class="fas fa-file-alt" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                        <p>Generate a comprehensive analysis summary</p>
+                        <p style="font-size: 0.8rem; margin-top: 0.5rem;">Load a dataset and click the button above</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        let currentDataset = null;
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSampleDatasets();
+        });
+
+        function switchTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.closest('.tab').classList.add('active');
+        }
+
+        async function loadSampleDatasets() {
+            try {
+                const response = await fetch('/api/available_datasets');
+                const data = await response.json();
+                
+                const container = document.getElementById('sampleDatasets');
+                container.innerHTML = '';
+                
+                data.datasets.forEach(dataset => {
+                    const item = document.createElement('div');
+                    item.className = 'sample-dataset-item';
+                    item.onclick = () => loadSampleDataset(dataset.name);
+                    item.innerHTML = `
+                        <h4>${dataset.name.replace(/_/g, ' ').toUpperCase()}</h4>
+                        <p>${dataset.description}</p>
+                    `;
+                    container.appendChild(item);
+                });
+            } catch (error) {
+                console.error('Error loading sample datasets:', error);
+            }
+        }
+
+        async function uploadFile() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            
+            if (!file) return;
+            
+            const formData = new FormData();
+            formData.append('file', file);
+            
+            showLoading('Uploading file...');
+            
+            try {
+                const response = await fetch('/api/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    currentDataset = data.dataset_info;
+                    displayDatasetInfo(data.dataset_info);
+                    populateTargetColumns(data.dataset_info.columns);
+                    showSuccess('File uploaded successfully!');
+                } else {
+                    showError(data.error);
+                }
+            } catch (error) {
+                showError('Error uploading file: ' + error.message);
+            }
+            
+            hideLoading();
+        }
+
+        async function loadSampleDataset(datasetName) {
+            showLoading('Loading sample dataset...');
+            
+            try {
+                const response = await fetch(`/api/load_sample/${datasetName}`);
+                const data = await response.json();
+                
+                if (response.ok) {
+                    currentDataset = data.dataset_info;
+                    displayDatasetInfo(data.dataset_info);
+                    populateTargetColumns(data.dataset_info.columns);
+                    showSuccess(`Sample dataset ${datasetName} loaded successfully!`);
+                } else {
+                    showError(data.error);
+                }
+            } catch (error) {
+                showError('Error loading sample dataset: ' + error.message);
+            }
+            
+            hideLoading();
+        }
+
+        function displayDatasetInfo(info) {
+            const container = document.getElementById('datasetInfo');
+            const section = document.getElementById('datasetInfoSection');
+            
+            container.innerHTML = `
+                <h4 style="color: var(--primary-blue);">${info.filename}</h4>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="value">${info.shape[0]}</div>
+                        <div class="label">Rows</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="value">${info.shape[1]}</div>
+                        <div class="label">Columns</div>
+                    </div>
+                </div>
+                <p style="margin-top: 0.5rem;"><strong>Columns:</strong> ${info.columns.join(', ')}</p>
+            `;
+            
+            section.style.display = 'block';
+        }
+
+        function populateTargetColumns(columns) {
+            const select = document.getElementById('targetColumn');
+            select.innerHTML = '<option value="">Select target...</option>';
+            
+            columns.forEach(column => {
+                const option = document.createElement('option');
+                option.value = column;
+                option.textContent = column;
+                select.appendChild(option);
+            });
+        }
+
+        async function generateCorrelationHeatmap() {
+            if (!currentDataset) {
+                showError('Please load a dataset first');
+                return;
+            }
+            
+            showLoading('Generating correlation heatmap...');
+            
+            try {
+                const response = await fetch('/api/visualizations/correlation_heatmap');
+                const data = await response.json();
+                
+                if (response.ok) {
+                    const plotDiv = document.getElementById('plotContainer');
+                    const plot = JSON.parse(data.plot);
+                    Plotly.newPlot(plotDiv, plot.data, plot.layout);
+                } else {
+                    showError(data.error);
+                }
+            } catch (error) {
+                showError('Error generating heatmap: ' + error.message);
+            }
+            
+            hideLoading();
+        }
+
+        async function generateSurvivalCurve() {
+            if (!currentDataset) {
+                showError('Please load a dataset first');
+                return;
+            }
+            
+            showLoading('Generating survival curve...');
+            
+            try {
+                const response = await fetch('/api/visualizations/survival_curve');
+                const data = await response.json();
+                
+                if (response.ok) {
+                    const plotDiv = document.getElementById('plotContainer');
+                    const plot = JSON.parse(data.plot);
+                    Plotly.newPlot(plotDiv, plot.data, plot.layout);
+                } else {
+                    showError(data.error);
+                }
+            } catch (error) {
+                showError('Error generating survival curve: ' + error.message);
+            }
+            
+            hideLoading();
+        }
+
+        async function generateOutcomeDistribution() {
+            if (!currentDataset) {
+                showError('Please load a dataset first');
+                return;
+            }
+            
+            showLoading('Generating outcome distribution...');
+            
+            try {
+                const response = await fetch('/api/visualizations/outcome_distribution');
+                const data = await response.json();
+                
+                if (response.ok) {
+                    const plotDiv = document.getElementById('plotContainer');
+                    const plot = JSON.parse(data.plot);
+                    Plotly.newPlot(plotDiv, plot.data, plot.layout);
+                } else {
+                    showError(data.error);
+                }
+            } catch (error) {
+                showError('Error generating outcome distribution: ' + error.message);
+            }
+            
+            hideLoading();
+        }
+
+        async function runMLModel() {
+            if (!currentDataset) {
+                showError('Please load a dataset first');
+                return;
+            }
+            
+            const modelType = document.getElementById('modelType').value;
+            const targetColumn = document.getElementById('targetColumn').value;
+            
+            if (!targetColumn) {
+                showError('Please select a target column');
+                return;
+            }
+            
+            showLoading('Training machine learning model...');
+            
+            try {
+                const response = await fetch('/api/ml/predict', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        model_type: modelType,
+                        target_column: targetColumn
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    displayMLResults(data);
+                } else {
+                    showError(data.error);
+                }
+            } catch (error) {
+                showError('Error running ML model: ' + error.message);
+            }
+            
+            hideLoading();
+        }
+
+        function displayMLResults(results) {
+            const container = document.getElementById('mlResults');
+            
+            let featureImportanceHtml = '';
+            if (results.feature_importance) {
+                const sortedFeatures = Object.entries(results.feature_importance)
+                    .sort(([,a], [,b]) => b - a)
+                    .slice(0, 5);
+                
+                featureImportanceHtml = `
+                    <h4>Top 5 Important Features:</h4>
+                    <ul>
+                        ${sortedFeatures.map(([feature, importance]) => 
+                            `<li>${feature}: ${importance.toFixed(3)}</li>`
+                        ).join('')}
+                    </ul>
+                `;
+            }
+            
+            container.innerHTML = `
+                <h3 style="color: var(--primary-blue);">Model Results: ${results.model_type.replace('_', ' ').toUpperCase()}</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="value">${(results.accuracy * 100).toFixed(1)}%</div>
+                        <div class="label">Accuracy</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="value">${results.test_size}</div>
+                        <div class="label">Test Samples</div>
+                    </div>
+                </div>
+                ${featureImportanceHtml}
+                <h4>Sample Predictions:</h4>
+                <table style="width: 100%; border-collapse: collapse; margin-top: 0.5rem;">
+                    <tr style="background: var(--light-blue);">
+                        <th style="padding: 0.5rem; border: 1px solid var(--secondary-blue);">Actual</th>
+                        <th style="padding: 0.5rem; border: 1px solid var(--secondary-blue);">Predicted</th>
+                    </tr>
+                    ${results.predictions_sample.actual.map((actual, i) => `
+                        <tr>
+                            <td style="padding: 0.5rem; border: 1px solid var(--secondary-blue);">${actual}</td>
+                            <td style="padding: 0.5rem; border: 1px solid var(--secondary-blue);">${results.predictions_sample.predicted[i]}</td>
+                        </tr>
+                    `).join('')}
+                </table>
+            `;
+        }
+
+        async function generateSummary() {
+            if (!currentDataset) {
+                showError('Please load a dataset first');
+                return;
+            }
+            
+            showLoading('Generating analysis summary...');
+            
+            try {
+                const response = await fetch('/api/analysis/summary');
+                const data = await response.json();
+                
+                if (response.ok) {
+                    displaySummary(data);
+                } else {
+                    showError(data.error);
+                }
+            } catch (error) {
+                showError('Error generating summary: ' + error.message);
+            }
+            
+            hideLoading();
+        }
+
+        function displaySummary(summary) {
+            const container = document.getElementById('summaryResults');
+            
+            container.innerHTML = `
+                <h3 style="color: var(--primary-blue);">Dataset Analysis Summary</h3>
+                
+                <h4>Dataset Overview</h4>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="value">${summary.dataset_overview.total_rows}</div>
+                        <div class="label">Total Rows</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="value">${summary.dataset_overview.total_columns}</div>
+                        <div class="label">Total Columns</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="value">${summary.dataset_overview.numeric_columns}</div>
+                        <div class="label">Numeric Columns</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="value">${summary.dataset_overview.missing_data_percentage}%</div>
+                        <div class="label">Missing Data</div>
+                    </div>
+                </div>
+                
+                <h4>Data Quality</h4>
+                <ul>
+                    <li>Complete rows: ${summary.data_quality.complete_rows}</li>
+                    <li>Duplicate rows: ${summary.data_quality.duplicate_rows}</li>
+                    <li>Columns with missing data: ${summary.data_quality.columns_with_missing_data.length}</li>
+                </ul>
+                
+                <h4>Key Insights</h4>
+                <ul>
+                    ${summary.insights.map(insight => `<li>${insight}</li>`).join('')}
+                </ul>
+            `;
+        }
+
+        function showLoading(message) {
+            // You can implement a loading overlay here
+            console.log('Loading:', message);
+        }
+
+        function hideLoading() {
+            // Hide loading overlay
+            console.log('Loading complete');
+        }
+
+        function showError(message) {
+            // Create error message element
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message';
+            errorDiv.innerHTML = `<i class="fas fa-exclamation-triangle"></i> ${message}`;
+            
+            // Insert at the top of main content
+            const mainContent = document.querySelector('.main-content');
+            mainContent.insertBefore(errorDiv, mainContent.firstChild);
+            
+            // Remove after 5 seconds
+            setTimeout(() => {
+                if (errorDiv.parentNode) {
+                    errorDiv.parentNode.removeChild(errorDiv);
+                }
+            }, 5000);
+        }
+
+        function showSuccess(message) {
+            // Create success message element
+            const successDiv = document.createElement('div');
+            successDiv.className = 'success-message';
+            successDiv.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
+            
+            // Insert at the top of main content
+            const mainContent = document.querySelector('.main-content');
+            mainContent.insertBefore(successDiv, mainContent.firstChild);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                if (successDiv.parentNode) {
+                    successDiv.parentNode.removeChild(successDiv);
+                }
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
