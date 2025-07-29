@@ -1,0 +1,51 @@
+patient_id,age,hemoglobin_level,treatment_type,diagnosis_date,cancer_type
+P001,45,8.2,Chemotherapy,2024-01-15,Breast Cancer
+P002,62,11.5,Radiation Therapy,2024-02-03,Lung Cancer
+P003,38,7.8,Immunotherapy,2024-01-28,Leukemia
+P004,71,9.1,Surgery,2024-02-10,Colon Cancer
+P005,54,12.3,Chemotherapy,2024-01-22,Ovarian Cancer
+P006,67,6.9,Radiation Therapy,2024-02-05,Prostate Cancer
+P007,42,10.8,Immunotherapy,2024-02-12,Melanoma
+P008,59,8.7,Chemotherapy,2024-01-30,Breast Cancer
+P009,34,13.2,Surgery,2024-02-08,Thyroid Cancer
+P010,76,7.3,Radiation Therapy,2024-01-25,Lung Cancer
+P011,48,11.9,Targeted Therapy,2024-02-14,Kidney Cancer
+P012,53,8.9,Chemotherapy,2024-01-18,Lymphoma
+P013,65,10.2,Immunotherapy,2024-02-01,Pancreatic Cancer
+P014,41,12.7,Surgery,2024-02-09,Cervical Cancer
+P015,69,7.6,Radiation Therapy,2024-01-27,Brain Cancer
+P016,36,14.1,Chemotherapy,2024-02-11,Testicular Cancer
+P017,58,9.4,Targeted Therapy,2024-01-31,Liver Cancer
+P018,72,8.1,Immunotherapy,2024-02-06,Bladder Cancer
+P019,47,11.3,Surgery,2024-02-13,Stomach Cancer
+P020,60,10.6,Chemotherapy,2024-01-24,Esophageal Cancer
+P021,39,13.8,Radiation Therapy,2024-02-07,Bone Cancer
+P022,64,7.9,Targeted Therapy,2024-01-29,Skin Cancer
+P023,52,12.1,Immunotherapy,2024-02-15,Uterine Cancer
+P024,43,9.7,Chemotherapy,2024-01-21,Oral Cancer
+P025,68,8.5,Surgery,2024-02-04,Gallbladder Cancer
+P026,35,14.3,Radiation Therapy,2024-02-10,Hodgkin Lymphoma
+P027,61,10.9,Targeted Therapy,2024-01-26,Multiple Myeloma
+P028,49,7.4,Immunotherapy,2024-02-08,Sarcoma
+P029,55,11.7,Chemotherapy,2024-01-23,Leukemia
+P030,74,9.2,Surgery,2024-02-12,Breast Cancer
+P031,44,12.5,Radiation Therapy,2024-01-19,Lung Cancer
+P032,57,8.3,Targeted Therapy,2024-02-02,Colon Cancer
+P033,33,13.6,Immunotherapy,2024-02-14,Ovarian Cancer
+P034,66,7.7,Chemotherapy,2024-01-28,Prostate Cancer
+P035,51,10.4,Surgery,2024-02-09,Melanoma
+P036,37,14.9,Radiation Therapy,2024-01-25,Thyroid Cancer
+P037,73,8.8,Targeted Therapy,2024-02-06,Kidney Cancer
+P038,46,11.2,Immunotherapy,2024-02-11,Lymphoma
+P039,63,9.6,Chemotherapy,2024-01-30,Pancreatic Cancer
+P040,40,12.8,Surgery,2024-02-07,Cervical Cancer
+P041,70,7.2,Radiation Therapy,2024-01-24,Brain Cancer
+P042,56,13.4,Targeted Therapy,2024-02-13,Testicular Cancer
+P043,32,10.1,Immunotherapy,2024-02-05,Liver Cancer
+P044,65,8.6,Chemotherapy,2024-01-22,Bladder Cancer
+P045,48,11.8,Surgery,2024-02-15,Stomach Cancer
+P046,59,9.9,Radiation Therapy,2024-01-27,Esophageal Cancer
+P047,41,13.1,Targeted Therapy,2024-02-03,Bone Cancer
+P048,67,7.5,Immunotherapy,2024-02-10,Skin Cancer
+P049,54,12.2,Chemotherapy,2024-01-26,Uterine Cancer
+P050,75,8.4,Surgery,2024-02-08,Oral Cancer
