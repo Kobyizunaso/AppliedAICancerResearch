@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Doe - Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <a href="#" class="nav-logo">John Doe</a>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#about" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#contact" class="nav-link">Contact</a>
+                    </li>
+                </ul>
+                <div class="nav-toggle" id="mobile-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Hello, I'm <span class="highlight">John Doe</span></h1>
+                <p class="hero-subtitle">Full Stack Developer & UI/UX Designer</p>
+                <p class="hero-description">
+                    I create beautiful, responsive websites and applications that provide 
+                    exceptional user experiences. Let's build something amazing together.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#about" class="btn btn-primary">Learn More</a>
+                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About Me</h2>
+                <p class="section-subtitle">Get to know me better</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="about-paragraph">
+                        I'm a passionate full-stack developer with over 5 years of experience 
+                        in creating digital solutions that make a difference. I specialize in 
+                        modern web technologies and love bringing ideas to life through code.
+                    </p>
+                    <p class="about-paragraph">
+                        When I'm not coding, you can find me exploring new technologies, 
+                        contributing to open source projects, or enjoying a good cup of coffee 
+                        while reading about the latest industry trends.
+                    </p>
+                    <div class="skills">
+                        <h3 class="skills-title">Technologies I work with:</h3>
+                        <div class="skills-grid">
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">CSS/SCSS</span>
+                            <span class="skill-tag">MongoDB</span>
+                            <span class="skill-tag">PostgreSQL</span>
+                            <span class="skill-tag">Git</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="image-placeholder">
+                        <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="100" cy="100" r="100" fill="#f0f0f0"/>
+                            <circle cx="100" cy="80" r="30" fill="#ddd"/>
+                            <path d="M40 160 Q100 120 160 160 L160 200 L40 200 Z" fill="#ddd"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">Let's discuss your next project</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Let's work together</h3>
+                    <p>
+                        I'm always interested in hearing about new opportunities and 
+                        exciting projects. Whether you have a question or just want to say hi, 
+                        I'll try my best to get back to you!
+                    </p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <strong>Email:</strong>
+                            <a href="mailto:john.doe@example.com">john.doe@example.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <strong>Phone:</strong>
+                            <a href="tel:+1234567890">+1 (234) 567-8900</a>
+                        </div>
+                        <div class="contact-item">
+                            <strong>Location:</strong>
+                            <span>San Francisco, CA</span>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 John Doe. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
